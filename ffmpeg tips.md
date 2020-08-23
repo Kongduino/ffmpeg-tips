@@ -51,3 +51,19 @@ $ ./gifenc.sh input.mov output.gif 720 10
 
 This will convert "input.mov" to a GIF that's 720p wide 10fps.
 
+## ADD SUBTITLES
+
+First convert the subtitles to .ass format. [Yes, ass. Who doesn't love ass and videos, right?]
+
+More seriously, this tip uses the [libass library](https://github.com/libass/libass). Make sure your ffmpeg install has the library in the configuration: `--enable-libass`.
+
+
+```bash
+$ ffmpeg -i subtitles.srt subtitles.ass
+```
+
+Then add them using a video filter:
+
+```bash
+$ ffmpeg -i mymovie.mp4 -vf ass=subtitles.ass mysubtitledmovie.mp4
+```
