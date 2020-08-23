@@ -67,3 +67,15 @@ Then add them using a video filter:
 ```bash
 $ ffmpeg -i mymovie.mp4 -vf ass=subtitles.ass mysubtitledmovie.mp4
 ```
+
+## ADD OVERLAYS
+
+```bash
+$ ffmpeg -i input.mp4 -i image.png -filter_complex "[0:v][1:v] overlay=25:25:enable='between(t,0,20)'" -pix_fmt yuv420p -c:a copy output.mp4
+```
+
+	[0:v][1:v] video 1 (image.png) on top of video 0 (input.mp4)
+	25:25 25 px top-left
+	`enable='between(t,0,20)` between seconds 0 and 20.
+	`-pix_fmt yuv420p` color encoding system, 6 bytes per 4 pixels, reordered.
+	`-c:a copy` copy the audio
