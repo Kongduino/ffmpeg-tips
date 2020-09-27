@@ -24,6 +24,28 @@ $ ffmpeg -i out.mp4 -filter:v scale=720:-1 -c:a copy shred.mp4
 $ ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
 ```
 
+## SLICED SAUSAGE
+
+```bash
+$ ffmpeg -i movie.mp4 2>&1 | grep Duration | awk '{print $2}' | tr -d ,
+```
+output:
+00:05:49.63
+So 6 minutes
+
+```bash
+$ for i in {1..6}; do
+> ffmpeg -ss 00:0$i:00 -i movie.mp4 -c copy -t 00:01:00.0 movie_$i.mp4;
+> done
+```
+Wait a while...
+
+```bash
+$ ls
+```
+output:
+movie.mp4	movie_1.mp4	movie_2.mp4	movie_3.mp4	movie_4.mp4	movie_5.mp4	movie_6.mp4```
+
 ## CONCATENATE FILES
 
 ```bash
@@ -83,3 +105,9 @@ $ ffmpeg -i input.mp4 -i image.png -filter_complex "[0:v][1:v] overlay=25:25:ena
 * `-c:a copy` copy the audio
 
 ![devilfire](devilfire.gif)
+
+## REMOVE AUDIO
+
+```bash
+$ ffmpeg -i input.mp4 -c copy -an output.mp4
+```
