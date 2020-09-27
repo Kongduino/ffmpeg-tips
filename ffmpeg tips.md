@@ -48,7 +48,7 @@ $ ls
 
 output:
 
-movie.mp4	movie_1.mp4	movie_2.mp4	movie_3.mp4	movie_4.mp4	movie_5.mp4	movie_6.mp4
+movie.mp4	movie_0.mp4	movie_1.mp4	movie_2.mp4	movie_3.mp4	movie_4.mp4	movie_5.mp4
 
 ## CONCATENATE FILES
 
