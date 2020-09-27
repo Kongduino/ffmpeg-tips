@@ -30,11 +30,13 @@ $ ffmpeg -ss 00:00:30.0 -i input.wmv -c copy -t 00:00:10.0 output.wmv
 $ ffmpeg -i movie.mp4 2>&1 | grep Duration | awk '{print $2}' | tr -d ,
 ```
 output:
-00:05:49.63
-So 6 minutes
+
+`00:05:49.63`
+
+So 6 minutes. Let's make 6 slices.
 
 ```bash
-$ for i in {1..6}; do
+$ for i in {0..5}; do
 > ffmpeg -ss 00:0$i:00 -i movie.mp4 -c copy -t 00:01:00.0 movie_$i.mp4;
 > done
 ```
@@ -43,8 +45,10 @@ Wait a while...
 ```bash
 $ ls
 ```
+
 output:
-movie.mp4	movie_1.mp4	movie_2.mp4	movie_3.mp4	movie_4.mp4	movie_5.mp4	movie_6.mp4```
+
+movie.mp4	movie_1.mp4	movie_2.mp4	movie_3.mp4	movie_4.mp4	movie_5.mp4	movie_6.mp4
 
 ## CONCATENATE FILES
 
